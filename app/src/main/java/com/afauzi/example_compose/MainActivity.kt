@@ -3,6 +3,7 @@ package com.afauzi.example_compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -24,7 +25,9 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun MessageCard(msg: Message){
-        Text(msg.author)
-        Text(msg.body)
+        Column {
+            Text(msg.author)
+            Text(msg.body)
+        }
     }
 }
