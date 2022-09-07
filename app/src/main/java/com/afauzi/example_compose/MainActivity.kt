@@ -1,5 +1,6 @@
 package com.afauzi.example_compose
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,7 +17,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.afauzi.example_compose.ui.theme.ExamplecomposeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,13 +64,17 @@ class MainActivity : ComponentActivity() {
        }
     }
 
-    @Preview
+    @Preview(name = "Preview Light Mode")
+    @Preview(
+        uiMode = Configuration.UI_MODE_NIGHT_YES,
+        showBackground = true,
+        name = "Dark Mode"
+    )
     @Composable
     fun PreviewMessageCard() {
         MaterialTheme {
-            Surface(modifier = Modifier.fillMaxSize()) {
-                MessageCard(Message("Akhmad Fauzi", "Luar Biasa"))
-            }
+            MessageCard(Message("Akhmad Fauzi", "Luar Biasa"))
         }
     }
+
 }
