@@ -21,7 +21,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MessageCard(Message("Akhmad Fauzi", "Luar Biasa"))
+            MaterialTheme() {
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    MessageCard(Message("Akhmad Fauzi", "Luar Biasa"))
+                }
+            }
         }
     }
 
@@ -54,6 +58,10 @@ class MainActivity : ComponentActivity() {
     @Preview
     @Composable
     fun PreviewMessageCard() {
-        MessageCard(Message("Akhmad Fauzi", "Luar Biasa"))
+        MaterialTheme {
+            Surface(modifier = Modifier.fillMaxSize()) {
+                MessageCard(Message("Akhmad Fauzi", "Luar Biasa"))
+            }
+        }
     }
 }
