@@ -7,6 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -17,20 +19,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.afauzi.example_compose.model.Message
+import com.afauzi.example_compose.utils.SampleData
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme() {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    MessageCard(Message("Akhmad Fauzi", "Luar Biasa"))
-                }
+                Conversation(SampleData.conversationSample)
             }
         }
     }
-
-    data class Message(val author: String, val body: String)
 
 
     @Composable
@@ -64,6 +64,16 @@ class MainActivity : ComponentActivity() {
        }
     }
 
+
+    @Composable
+    fun Conversation(messages: List<Message>) {
+        LazyColumn(content = {
+            items(messages) {message ->
+                MessageCard(message)
+            }
+        })
+    }
+
     @Preview(name = "Preview Light Mode")
     @Preview(
         uiMode = Configuration.UI_MODE_NIGHT_YES,
@@ -73,7 +83,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun PreviewMessageCard() {
         MaterialTheme {
-            MessageCard(Message("Akhmad Fauzi", "Luar Biasa"))
+            Conversation(SampleData.conversationSample)
         }
     }
 
