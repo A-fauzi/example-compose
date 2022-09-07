@@ -52,7 +52,14 @@ class MainActivity : ComponentActivity() {
            Spacer(modifier = Modifier.width(4.dp))
            Column {
                Text(msg.author, color = MaterialTheme.colors.secondary)
-               Text(msg.body)
+               Spacer(modifier = Modifier.height(4.dp))
+               Surface(shape = MaterialTheme.shapes.medium, elevation = 1.dp) {
+                   Text(
+                       msg.body,
+                       modifier = Modifier.padding(4.dp),
+                       style = MaterialTheme.typography.body2
+                   )
+               }
            }
        }
     }
